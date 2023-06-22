@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>简单表单</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      width: 300px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f1f1f1;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .container h1 {
+      text-align: center;
+    }
+
+    .container label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    .container input[type="text"],
+    .container input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+    }
+
+    .container button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      border: none;
+      border-radius: 3px;
+      background-color: #4CAF50;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .container button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>简单表单</h1>
+    <form>
+      <label for="username">用户名：</label>
+      <input type="text" id="username" placeholder="请输入用户名" required>
+
+      <label for="password">密码：</label>
+      <input type="password" id="password" placeholder="请输入密码" required>
+
+      <button type="submit">登录</button>
+    </form>
+  </div>
+
+  <script>
+    var accounts = [
+      { username: "testuser1", password: "testpassword1" },
+      { username: "testuser2", password: "testpassword2" }
+    ];
+
+    document.querySelector("form").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      var usernameInput = document.getElementById("username");
+      var passwordInput = document.getElementById("password");
+
+      var username = usernameInput.value.trim();
+      var password = passwordInput.value.trim();
+
+      var account = accounts.find(function(acc) {
+        return acc.username === username && acc.password === password;
+      });
+
+      if (account) {
+        alert("登录成功");
+      } else {
+        alert("用户名或密码错误");
+        usernameInput.value = "";
+        passwordInput.value = "";
+        usernameInput.focus();
+      }
+    });
+  </script>
+</body>
+</html>
